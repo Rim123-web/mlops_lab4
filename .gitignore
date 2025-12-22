@@ -1,6 +1,15 @@
+# Environnement virtuel
 venv_mlops/
+
+# Python
 __pycache__/
 *.pyc
+
+# Logs & modèles
 logs/
 models/
-data/
+
+# Data management with DVC
+data/**
+!data/**/*.dvc
+!data/**/.gitignore
