@@ -286,7 +286,26 @@ def main(version: str = "v1", seed: int = 42, gate_f1: float = 0.70) -> None:
         "baseline_f1": float(baseline),
     }
 
+    REPORTS_DIR = ROOT / "reports"  # use ROOT to make it consistent
+    REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 
+    metrics_path = REPORTS_DIR / "metrics.json"
+
+    with metrics_path.open("w", encoding="utf-8") as f:
+        json.dump(
+        {
+            "accuracy": metrics["accuracy"],
+            "precision": metrics["precision"],
+            "recall": metrics["recall"],
+            "f1": metrics["f1"],
+            "best_threshold": metrics.get("best_threshold", None),
+            "baseline_f1": metrics["baseline_f1"],
+        },
+        f,
+        indent=2,
+    )
+
+    print(f"[OK] Metrics written to {metrics_path}")
     # Sauvegarde du modèle
     MODELS_DIR.mkdir(parents=True, exist_ok=True)
     timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")

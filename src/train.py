@@ -577,32 +577,18 @@ def main(version: str = "v1", seed: int = 42, gate_f1: float = 0.75) -> None:
 
     # Logique de "registry" minimal : mise à jour du modèle courant
 
+# Déploiement du modèle (registry minimaliste)
     if entry["passed_gate"]:
-
         REGISTRY_DIR.mkdir(parents=True, exist_ok=True)
-
-        CURRENT_MODEL_PATH.write_text(
-
-            model_filename,
-
-            encoding="utf-8",
-
-        )
-
-        print(f"[DEPLOY] Modèle activé (current): {model_filename}")
-
+        CURRENT_MODEL_PATH.write_text(model_filename, encoding="utf-8")
+        print(f"[DEPLOY] Modèle activé : {model_filename}")
     else:
+        print("[DEPLOY] Refusé : F1 insuffisante ou baseline non battue.")
 
-        print(
-
-            "[DEPLOY] Refusé par le gate : F1 insuffisante "
-
-            "ou baseline non battue."
-
-        )
-
-
-
+# ✅ Always create stable alias for DVC
+    stable_model_path = MODELS_DIR / "model.joblib"
+    joblib.dump(model_pipeline, stable_model_path)
+    print(f"[DEPLOY] Alias stable (for DVC): {stable_model_path}")
 
 
 if __name__ == "__main__":

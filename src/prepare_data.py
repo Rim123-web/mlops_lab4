@@ -110,6 +110,7 @@ def data_quality_checks(df: pd.DataFrame) -> None:
 
 
     print("Préparation des données...")
+    print("hello...")
 
     # Taux de valeurs manquantes (en proportion)
 
