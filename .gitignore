@@ -13,3 +13,4 @@ models/
 data/**          # ignore everything in data/
 !data/**/*.dvc   # except DVC metadata
 !data/**/.gitignore
+/models

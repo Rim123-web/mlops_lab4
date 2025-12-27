@@ -109,6 +109,7 @@ def data_quality_checks(df: pd.DataFrame) -> None:
         raise ValueError(f"Colonnes manquantes dans le dataset : {missing}")
 
 
+    print("Préparation des données...")
 
     # Taux de valeurs manquantes (en proportion)
 
