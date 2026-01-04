@@ -8,9 +8,3 @@ __pycache__/
 # Logs & models
 logs/
 models/
-
-# Data folder (DVC manages data)
-data/**          # ignore everything in data/
-!data/**/*.dvc   # except DVC metadata
-!data/**/.gitignore
-/models
